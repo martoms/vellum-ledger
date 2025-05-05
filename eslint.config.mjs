@@ -1,0 +1,16 @@
+import { defineConfig, globalIgnores } from "eslint/config"
+import nextTs from "eslint-config-next/typescript"
+
+const eslintConfig = defineConfig([
+  ...nextTs,
+  globalIgnores([
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+    ".agents/**",
+    ".codex/**",
+  ]),
+])
+
+export default eslintConfig
