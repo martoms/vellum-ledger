@@ -20,13 +20,13 @@ export function TransactionList({ onEdit, onRemove, transactions }: TransactionL
   return (
     <>
       <div className="ledger-corner hidden overflow-x-auto border-y md:block">
-        <table className="min-w-full table-fixed border-collapse text-left">
+        <table className="w-full table-fixed border-collapse text-left">
           <thead className="border-b border-[var(--vellum-line-strong)]">
             <tr className="h-10 text-[10px] uppercase tracking-[0.16em] text-[var(--vellum-muted)]">
-              <th className="w-[22%] pl-6 font-medium lg:pl-11">Date</th>
-              <th className="w-[28%] border-l px-3 font-medium lg:px-6">Merchant</th>
-              <th className="w-[29%] border-l px-3 font-medium lg:px-6">Category</th>
-              <th className="w-[21%] border-l px-3 text-right font-medium lg:px-5">Amount</th>
+              <th className="w-[22%] pl-8 font-medium">Date</th>
+              <th className="w-[30%] border-l px-3 font-medium">Merchant</th>
+              <th className="w-[28%] border-l px-3 font-medium">Category</th>
+              <th className="w-[20%] border-l px-3 text-right font-medium">Amount</th>
             </tr>
           </thead>
           <tbody>
@@ -46,12 +46,12 @@ function TransactionRow({ onEdit, onRemove, transaction }: Omit<TransactionListP
   const income = category.kind === 'income'
   return (
     <tr className="group h-[58px] border-b text-sm lg:text-[15px]">
-      <td className="whitespace-nowrap pl-6 font-serif lg:pl-11">{formatLedgerDate(transaction.occurredOn)}</td>
-      <td className="whitespace-nowrap border-l px-3 font-serif lg:px-6">{transaction.merchant}</td>
-      <td className="border-l px-3 lg:px-6">
-        <span className="flex items-center gap-2 whitespace-nowrap font-serif lg:gap-3"><TransactionCategoryIcon categoryId={transaction.categoryId} className="size-4 lg:size-[18px]" />{category.label}</span>
+      <td className="whitespace-nowrap pl-8 font-serif">{formatLedgerDate(transaction.occurredOn)}</td>
+      <td className="whitespace-nowrap border-l px-3 font-serif">{transaction.merchant}</td>
+      <td className="border-l px-3">
+        <span className="flex items-center gap-2 whitespace-nowrap font-serif"><TransactionCategoryIcon categoryId={transaction.categoryId} className="size-4" />{category.label}</span>
       </td>
-      <td className="border-l px-3 text-right font-serif lg:px-5">
+      <td className="border-l px-3 text-right font-serif">
         <span className={income ? 'text-[var(--vellum-income)]' : 'text-[var(--vellum-expense)]'}><span className="sr-only">{income ? 'Income ' : 'Expense '}</span>{formatSignedAmount(transaction)}</span>
         <span className="ml-2 hidden gap-1 align-middle group-hover:inline-flex focus-within:inline-flex">
           <Button aria-label={`Edit ${transaction.merchant}`} variant="ghost" size="icon" className="size-7" onClick={() => onEdit(transaction)}><Pencil aria-hidden className="size-3.5" /></Button>
